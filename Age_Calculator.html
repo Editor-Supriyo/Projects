@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ysabeau+Office:wght@300&display=swap');
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+        html {
+            background:#2d2d2d;
+            text-align: center;
+            font-family: 'Ysabeau Office', sans-serif;
+        }
+    @media only screen and (min-width: 600px) {
+        .container {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .box {
+            height: 500px;
+            width: 500px;
+            background-color: yellow;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+        .dateInpuArea {
+            display: flex;
+            flex-direction: row;
+
+        }
+        button {
+            height: 35px;
+            width: 200px;
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: Blur(5px);
+            border: none;
+            border-radius: 5px;
+        }
+    }
+    @media only screen and (max-width: 599px) {
+        h1 {
+            font-size: 20px;
+            margin: 0 0 10px;
+        }
+        h2 {
+            font-size: 20px;
+            margin: 20px 0 10px;
+        }
+        .container {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .box {
+            height: 60vh;
+            width: 80vw;
+            background:radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 80%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            outline: 2px solid rgba(255, 255, 255, 0.8);
+        }
+        .dateInputArea {
+            height: 50px;
+            width: 200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            margin: 5px 0 5px;
+        }
+        #date, #month {
+            height: 35px;
+            width: 50px;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+        }
+        #year {
+            height: 35px;
+            width: 80px;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+        }       
+        button {
+            height: 35px;
+            width: 200px;
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: Blur(5px);
+            border: none;
+            border-radius: 5px;
+        }
+        .bottomSec {
+            position: absolute;
+            bottom: 0;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.2);
+        }
+        .devSign a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.2);
+        }
+    }
+
+    </style>
+</head>
+    <!-- HTML -->
+<body>
+    <div class="container">
+        <div class="box">
+            <h1 id="time">Let's Calculate Your Age</h1>
+            <span>Enter Your Age</span>
+            <div class="dateInputArea">
+                <input id="date"  type="number" maxlength="2" min="01" max="31" placeholder="DD" required="required">
+                <input id="month" type="number" maxlength="2" min="01" max="12" placeholder="MM" required="required">
+                <input id="year" type="number" maxlength="4" min="1000" max="9999" placeholder="YYYY" required="required">
+            </div>
+            <button id="myBtn">Calculate</button>
+            <h2 id="result"></h2>
+        </div>
+        <div class="bottomSec">
+            <p class="devSign">Dev: <a href="https://www.facebook.com/Editor.Supriyo">Supriyo</a></p>
+            <p>Verson: v.0.1.0</p>
+        </div>
+    </div>
+    <!-- Script -->
+    <script>
+        document.getElementById("myBtn").onclick = ()=> {
+            let d1 = document.getElementById('date').value;
+            let m1 = document.getElementById('month').value;
+            let y1 = document.getElementById('year').value;
+
+
+            let date = new Date()
+            let d2 = date.getDate()
+            let m2 = 1+ date.getMonth()
+            let y2 = date.getFullYear()
+            let month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+            if(d1>d2){
+                d2 = d2 + month[m2 - 1];
+                m2 = m2 - 1;
+            }
+            if(m1>m2){
+                m2 = m2 + 12
+                y2 = y2 - 1
+            }
+
+            let d = d2 - d1
+            let m = m2 - m1
+            let y = y2 - y1
+
+            document.getElementById('result').innerHTML = `Your Current Age ${y} Years ${m} Months ${d} Days`
+        }
+        
+    </script>
+</body>
+</html>
